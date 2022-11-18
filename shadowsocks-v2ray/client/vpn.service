@@ -1,0 +1,11 @@
+[Unit]
+Description=Shadowsocks-TLS VPN
+
+[Service]
+User=root
+WorkingDirectory=/root
+ExecStart=ss-local -c /etc/vpn/sites/example.com.json
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
