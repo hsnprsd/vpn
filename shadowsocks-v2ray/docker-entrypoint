@@ -2,12 +2,20 @@
 
 set -xe
 
+PASSWORD_FILE="/etc/vpn/password"
+
+if [ -f ${PASSWORD_FILE} ]; then
+  PASSWORD=$(cat /etc/vpn/password)
+else
+  PASSWORD=$(date +%s | sha256sum | base64 | head -c 32)
+  echo -n "${PASSWORD}" > ${PASSWORD_FILE}
+fi
+
 exec ss-server \
     -s 0.0.0.0 \
     -p 8080 \
-    -k $PASSWORD \
+    -k "${PASSWORD}" \
     -m "aes-256-gcm" \
     -u \
     --plugin v2ray-plugin \
     --plugin-opts "server;path=/amghezi"
-

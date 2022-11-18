@@ -14,6 +14,6 @@ services:
   ss-server:
     build:
       context: .
-    environment:
-      PASSWORD: "8b96!qEzL*u7"
+    volumes:
+      - /etc/vpn:/etc/vpn
     restart: "always"
