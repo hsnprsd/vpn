@@ -7,6 +7,6 @@ RUN wget https://github.com/shadowsocks/v2ray-plugin/releases/download/v1.3.2/v2
 	&& mv v2ray-plugin_linux_amd64 v2ray-plugin \
 	&& mv v2ray-plugin /usr/bin
 
-COPY ./start-server.sh /start-server.sh
+COPY ./docker-entrypoint /docker-entrypoint
 
-CMD ["/start-server.sh"]
+CMD ["/docker-entrypoint"]
